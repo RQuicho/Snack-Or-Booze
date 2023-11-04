@@ -48,10 +48,29 @@ const unroll = (squareArray) => {
   }
   
   const down = () => {
-    
+    for (let i=firstCycle + 1; i < squareLength; i++) {
+      newArray.push(squareArray[i][squareLength-1]);
+    }
+  }
+
+  const left = () => {
+    for (let i=squareLength-2; i > -1; i--) {
+      newArray.push(squareArray[squareLength-1][i]);
+    }
+  }
+
+  const up = () => {
+    for (let i=squareLength-2; i > 0; i--) {
+      newArray.push(squareArray[i][firstCycle]);
+    }
   }
 
   // right();
+  // down();
+  // left();
+  // up();
+
+  
 
   return newArray;
 
