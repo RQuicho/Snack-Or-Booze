@@ -6,11 +6,11 @@
 // ]; 
 // returns: [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
 
-const smallerSquare = [
-  ["a", "b", "c"],
-  ["d", "e", "f"],
-  ["g", "h", "i"]
-];
+// const smallerSquare = [
+//   ["a", "b", "c"],
+//   ["d", "e", "f"],
+//   ["g", "h", "i"]
+// ];
 
 // unroll(smallerSquare); // ["a", "b", "c", "f", "i", "h", "g", "d", "e"]
 
@@ -41,6 +41,13 @@ const unroll = (squareArray) => {
   const newArray = [];
   let cycle = 0;
   let squareLength = squareArray.length;
+
+  if (squareArray[0] === undefined) {
+    return 'Array cannot be empty';
+  }
+  if (squareArray[0].length === 0) {
+    return squareArray[0];
+  }
 
   while (newArray.length < squareArray.length * squareArray[0].length) {
     const right = () => {
@@ -78,6 +85,7 @@ const unroll = (squareArray) => {
     if (newArray.length >= squareArray.length * squareArray[0].length) {
       break;
     }
+
   }
 
   return newArray;
