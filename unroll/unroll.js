@@ -6,11 +6,11 @@
 // ]; 
 // returns: [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
 
-// const smallerSquare = [
-//   ["a", "b", "c"],
-//   ["d", "e", "f"],
-//   ["g", "h", "i"]
-// ];
+const smallerSquare = [
+  ["a", "b", "c"],
+  ["d", "e", "f"],
+  ["g", "h", "i"]
+];
 
 // unroll(smallerSquare); // ["a", "b", "c", "f", "i", "h", "g", "d", "e"]
 
@@ -36,45 +36,51 @@ const squareArray = [
   [13, 14, 15, 16]
 ]; 
 
+
 const unroll = (squareArray) => {
   const newArray = [];
-  let firstCycle = 0;
-  let squareLength = squareArray[firstCycle].length; // gets smaller after a full circle pass (4x4 becomes 2x2)
+  let cycle = 0;
+  let squareLength = squareArray.length;
 
-  const right = () => {
-    for (let i=0; i < squareLength; i++) {
-      newArray.push(squareArray[firstCycle][i]);
+  while (newArray.length < squareArray.length * squareArray[0].length) {
+    const right = () => {
+      for (let i=cycle; i < squareLength; i++) {
+        newArray.push(squareArray[cycle][i]);
+      }
+    }
+    
+    const down = () => {
+      for (let i=cycle + 1; i < squareLength; i++) {
+        newArray.push(squareArray[i][squareLength-1]);
+      }
+    }
+
+    const left = () => {
+      for (let i=squareLength-2; i > cycle-1; i--) {
+        newArray.push(squareArray[squareLength-1][i]);
+      }
+    }
+
+    const up = () => {
+      for (let i=squareLength-2; i > cycle; i--) {
+        newArray.push(squareArray[i][cycle]);
+      }
+    }
+
+    right();
+    down();
+    left();
+    up();
+
+    cycle++;
+    squareLength--;
+
+    if (newArray.length >= squareArray.length * squareArray[0].length) {
+      break;
     }
   }
-  
-  const down = () => {
-    for (let i=firstCycle + 1; i < squareLength; i++) {
-      newArray.push(squareArray[i][squareLength-1]);
-    }
-  }
-
-  const left = () => {
-    for (let i=squareLength-2; i > -1; i--) {
-      newArray.push(squareArray[squareLength-1][i]);
-    }
-  }
-
-  const up = () => {
-    for (let i=squareLength-2; i > 0; i--) {
-      newArray.push(squareArray[i][firstCycle]);
-    }
-  }
-
-  // right();
-  // down();
-  // left();
-  // up();
-
-  
 
   return newArray;
-
-
 }
 
 module.exports = unroll;
