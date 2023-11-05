@@ -20,6 +20,15 @@ class SnackOrBoozeApi {
       console.log(e);
     }
   }
+  static async getDrinks() {
+    try {
+      const result = await axios.get(`${BASE_API_URL}/drinks`);
+      return result.data;
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
 
 }
 

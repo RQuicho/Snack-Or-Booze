@@ -10,14 +10,22 @@ import Snack from "./FoodItem";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
-    async function getSnacks() {
-      let snacks = await SnackOrBoozeApi.getSnacks();
-      setSnacks(snacks);
-      setIsLoading(false);
+    try {
+      async function getItems() {
+        let snacks = await SnackOrBoozeApi.getSnacks();
+        let drinks = await SnackOrBoozeApi.getDrinks();
+        setSnacks(snacks);
+        setDrinks(drinks);
+        setIsLoading(false);
+      }
+      getItems();
     }
-    getSnacks();
+    catch(e) {
+      console.error(e);
+    }
   }, []);
 
   if (isLoading) {
@@ -30,7 +38,7 @@ function App() {
         <NavBar />
         <main>
           <Routes>
-            <Route path="/" element={<Home snacks={snacks} />} />
+            <Route path="/" element={<Home snacks={snacks} drinks={drinks}/>} />
             <Route path="/snacks" element={<Menu snacks={snacks} title="Snacks" />} />
             <Route path="/snacks/:id" element={<Snack items={snacks} cantFind="/snacks" />} />
             <Route path="/*" element={<p>Hmmm. I can't seem to find what you want.</p>} />
