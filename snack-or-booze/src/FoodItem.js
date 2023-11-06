@@ -4,6 +4,7 @@ import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
 function FoodItem({ items, cantFind }) {
   const { id } = useParams();
+  const {snackordrink} = useParams();
 
   let snack = items.find(snack => snack.id === id);
   if (!snack) return redirect(cantFind);
@@ -13,14 +14,14 @@ function FoodItem({ items, cantFind }) {
       <Card>
         <CardBody>
           <CardTitle className="font-weight-bold text-center">
-            {snack.name}
+            {snackordrink.name}
           </CardTitle>
-          <CardText className="font-italic">{snack.description}</CardText>
+          <CardText className="font-italic">{snackordrink.description}</CardText>
           <p>
-            <b>Recipe:</b> {snack.recipe}
+            <b>Recipe:</b> {snackordrink.recipe}
           </p>
           <p>
-            <b>Serve:</b> {snack.serve}
+            <b>Serve:</b> {snackordrink.serve}
           </p>
         </CardBody>
       </Card>

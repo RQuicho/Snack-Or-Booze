@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useParams} from "react-router-dom";
 import "./FoodMenu.css";
 import {
   Card,
@@ -9,8 +9,31 @@ import {
   ListGroup,
   ListGroupItem
 } from "reactstrap";
+import SnackOrBoozeApi from "./Api";
 
-function FoodMenu({ snacks }) {
+function FoodMenu({ items:options }) {
+  const {snackordrink} = useParams();
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const getItems = async() => {
+      try {
+        if (snackordrink === 'snacks') {
+          const snacks = await SnackOrBoozeApi.getSnacks();
+          setItems(snacks);
+        } else if (snackordrink === 'drinks') {
+          const drinks = await SnackOrBoozeApi.getDrinks();
+          setItems(drinks);
+        }
+      } catch(e) {
+        console.error("Error fetching items in FoodMenu component", e);
+      }
+    }
+    getItems();
+  }, [snackordrink]);
+
+  console.log('items in FoodMenu: ', items);
+
   return (
     <section className="col-md-4">
       <Card>
@@ -23,9 +46,9 @@ function FoodMenu({ snacks }) {
             bulk of the card's content.
           </CardText>
           <ListGroup>
-            {snacks.map(snack => (
-              <Link to={`/snacks/${snack.id}`} key={snack.id}>
-                <ListGroupItem>{snack.name}</ListGroupItem>
+            {items.map(item => (
+              <Link to={`/${snackordrink}/${item.id}`} key={item.id}>
+                <ListGroupItem>{item.name}</ListGroupItem>
               </Link>
             ))}
           </ListGroup>
