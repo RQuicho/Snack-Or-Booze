@@ -32,8 +32,6 @@ function FoodMenu({ items:options }) {
     getItems();
   }, [snackordrink]);
 
-  console.log('items in FoodMenu: ', items);
-
   return (
     <section className="col-md-4">
       <Card>

@@ -12,27 +12,14 @@ function App() {
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [items, setItems] = useState([]);
-  // const {snackordrink} = useParams();
 
   useEffect(() => {
     async function getItems() {
       try {
         let snacks = await SnackOrBoozeApi.getSnacks();
         let drinks = await SnackOrBoozeApi.getDrinks();
-
         setSnacks(snacks);
-        setDrinks(drinks);
-
-        // if (snackordrink === 'snacks') {
-        //   setItems(snacks);
-        // } else if (snackordrink === 'drinks') {
-        //   setItems(drinks);
-        // }
-    
-        console.log('snacks in App.js: ', snacks);
-        console.log('drinks in App.js: ', drinks);
-        // console.log('items in App.js: ', items);
-   
+        setDrinks(drinks);   
         setIsLoading(false);
       } catch(e) {
         console.error('Error fetching items in App.js', e);
@@ -40,8 +27,6 @@ function App() {
     }
     getItems();
   }, []);
-
-
 
   if (isLoading) {
     return <p>Loading &hellip;</p>;
@@ -55,7 +40,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home snacks={snacks} drinks={drinks}/>} />
             <Route path="/:snackordrink" element={<FoodMenu items={items} title="Snacks" />} />
-            <Route path="/:snackordrink/:id" element={<FoodItem cantFind="/snacks" />} />
+            <Route path="/:snackordrink/:id" element={<FoodItem items={items} cantFind="/:snackordrink" />} />
             <Route path="/*" element={<p>Hmmm. I can't seem to find what you want.</p>} />
           </Routes>
         </main>
