@@ -38,10 +38,10 @@ function FoodMenu({ items:options }) {
     try {
       if (snackordrink === 'snacks') {
         const newItem = await SnackOrBoozeApi.postSnack(newItemData);
-        setItems(items => [...items, {...newItem, id: newItem.name.toLowerCase()}]);
+        setItems(items => [...items, newItem]);
       } else if (snackordrink === 'drinks') {
         const newItem = await SnackOrBoozeApi.postDrink(newItemData);
-        setItems(items => [...items, {...newItem, id: newItem.name.toLowerCase()}]);
+        setItems(items => [...items, newItem]);
       }
     } catch(e) {
       console.error("Error fetching new item data in FoodMenu component", e);

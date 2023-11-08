@@ -29,11 +29,11 @@
       "serve": "Immediately."
     },
     {
-      "name": "DrinkTest",
-      "description": "drining test",
-      "recipe": "test drink",
-      "serve": "drink",
-      "id": "LPGi00P"
+      "name": "Old Fashjon",
+      "description": "hard drink",
+      "recipe": "whiskey, rum, bitters",
+      "serve": "on ice",
+      "id": "old-fashjon"
     }
   ],
   "snacks": [
@@ -59,18 +59,18 @@
       "serve": "Place on tiny, precious little plates."
     },
     {
-      "name": "TestOne",
-      "description": "This is the first test",
-      "recipe": "testing one",
-      "serve": "one",
-      "id": "iBSKlHS"
+      "name": "Testing One Snack",
+      "description": "This is a new snack",
+      "recipe": "open bag",
+      "serve": "eat",
+      "id": "testing-one-snack"
     },
     {
-      "name": "teweg",
-      "description": "awehawerh",
-      "recipe": "sdgsaaw",
-      "serve": "egeg",
-      "id": "b7Cb2Vq"
+      "name": "Dorritos Chips",
+      "description": "Chips",
+      "recipe": "corn and salt",
+      "serve": "in a bag",
+      "id": "dorritos-chip"
     }
   ]
 }

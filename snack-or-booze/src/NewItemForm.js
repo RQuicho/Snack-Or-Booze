@@ -13,7 +13,8 @@ const NewItemForm = ({addItem}) => {
     const {name, value} = e.target;
     setFormData(formData => ({
       ...formData,
-      [name]: value
+      [name]: value,
+      id: formData.name.toLocaleLowerCase().replace(/\s+/g, '-')
     }));
   }
 
