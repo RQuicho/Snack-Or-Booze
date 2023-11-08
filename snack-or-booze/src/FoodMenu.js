@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import SnackOrBoozeApi from "./Api";
 import NewItemForm from "./NewItemForm";
-import {v4 as uuid} from 'uuid';
+import {stringify, v4 as uuid} from 'uuid';
 
 function FoodMenu({ items:options }) {
   const {snackordrink} = useParams();
@@ -53,7 +53,7 @@ function FoodMenu({ items:options }) {
       <Card>
         <CardBody>
           <CardTitle className="font-weight-bold text-center">
-            Food Menu
+            {snackordrink.charAt(0).toUpperCase() + snackordrink.slice(1)} Menu
           </CardTitle>
           <CardText>
             Some quick example text to build on the card title and make up the

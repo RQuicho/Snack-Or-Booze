@@ -1,7 +1,14 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
+import { Navigate, useParams } from "react-router-dom";
 
 function Home({snacks, drinks}) {
+  const {snackordrink} = useParams();
+
+  if (snackordrink !== 'snacks' || snackordrink !== 'drinks') {
+    <Navigate to='/' />
+  }
+
   return (
     <section className="col-md-8">
       <Card>

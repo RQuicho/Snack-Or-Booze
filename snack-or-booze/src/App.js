@@ -6,12 +6,14 @@ import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
 import FoodMenu from "./FoodMenu";
 import FoodItem from "./FoodItem";
+import NotFound from "./NotFound";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [items, setItems] = useState([]);
+  // const {snackordrink} = useParams();
 
   useEffect(() => {
     async function getItems() {
@@ -32,16 +34,33 @@ function App() {
     return <p>Loading &hellip;</p>;
   }
 
+  // if (snackordrink !== 'snacks' && snackordrink !== 'drinks') {
+  //   return <NotFound />
+  // }
+
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
         <main>
           <Routes>
-            <Route path="/" element={<Home snacks={snacks} drinks={drinks}/>} />
-            <Route path="/:snackordrink" element={<FoodMenu items={items} title="Snacks" />} />
-            <Route path="/:snackordrink/:id" element={<FoodItem items={items} cantFind="/:snackordrink" />} />
-            <Route path="/*" element={<p>Hmmm. I can't seem to find what you want.</p>} />
+            <Route 
+              path="/" 
+              element={<Home snacks={snacks} drinks={drinks}/>} />
+            <Route 
+              path="/:snackordrink" 
+              element={<FoodMenu items={items} 
+              title= "Snacks" />} 
+            />
+            <Route 
+              path="/:snackordrink/:id" 
+              element={<FoodItem items={items} 
+              cantFind="/:snackordrink" />} 
+            />
+            <Route 
+              path="*" 
+              element={<NotFound />}
+            />
           </Routes>
         </main>
       </BrowserRouter>
