@@ -10,6 +10,8 @@ import {
   ListGroupItem
 } from "reactstrap";
 import SnackOrBoozeApi from "./Api";
+import NewItemForm from "./NewItemForm";
+import {v4 as uuid} from 'uuid';
 
 function FoodMenu({ items:options }) {
   const {snackordrink} = useParams();
@@ -32,6 +34,20 @@ function FoodMenu({ items:options }) {
     getItems();
   }, [snackordrink]);
 
+  const addItem = async(newItemData) => {
+    try {
+      if (snackordrink === 'snacks') {
+        const newItem = await SnackOrBoozeApi.postSnack(newItemData);
+        setItems(items => [...items, {...newItem, id: newItem.name.toLowerCase()}]);
+      } else if (snackordrink === 'drinks') {
+        const newItem = await SnackOrBoozeApi.postDrink(newItemData);
+        setItems(items => [...items, {...newItem, id: newItem.name.toLowerCase()}]);
+      }
+    } catch(e) {
+      console.error("Error fetching new item data in FoodMenu component", e);
+    }
+  }
+
   return (
     <section className="col-md-4">
       <Card>
@@ -43,6 +59,7 @@ function FoodMenu({ items:options }) {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </CardText>
+          <NewItemForm addItem={addItem}/>
           <ListGroup>
             {items.map(item => (
               <Link to={`/${snackordrink}/${item.id}`} key={item.id}>

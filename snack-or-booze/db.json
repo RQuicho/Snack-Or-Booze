@@ -27,6 +27,13 @@
       "description": "Crisp!",
       "recipe": "Open can.",
       "serve": "Immediately."
+    },
+    {
+      "name": "DrinkTest",
+      "description": "drining test",
+      "recipe": "test drink",
+      "serve": "drink",
+      "id": "LPGi00P"
     }
   ],
   "snacks": [
@@ -50,6 +57,20 @@
       "description": "Tart and delicious.",
       "recipe": "Mix arugula, toasted walnuts, and thinly-sliced Parmesan cheese. Dress with lemon and olive oil.",
       "serve": "Place on tiny, precious little plates."
+    },
+    {
+      "name": "TestOne",
+      "description": "This is the first test",
+      "recipe": "testing one",
+      "serve": "one",
+      "id": "iBSKlHS"
+    },
+    {
+      "name": "teweg",
+      "description": "awehawerh",
+      "recipe": "sdgsaaw",
+      "serve": "egeg",
+      "id": "b7Cb2Vq"
     }
   ]
 }

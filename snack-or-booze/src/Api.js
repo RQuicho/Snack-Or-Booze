@@ -29,6 +29,24 @@ class SnackOrBoozeApi {
       console.log(e);
     }
   }
+  static async postSnack(newSnackData) {
+    try {
+      const result = await axios.post(`${BASE_API_URL}/snacks`, newSnackData);
+      return result.data;
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
+  static async postDrink(newDrinkData) {
+    try {
+      const result = await axios.post(`${BASE_API_URL}/drinks`, newDrinkData);
+      return result.data;
+    }
+    catch(e) {
+      console.log(e);
+    }
+  }
 
 }
 
