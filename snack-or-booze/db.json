@@ -29,11 +29,11 @@
       "serve": "Immediately."
     },
     {
-      "name": "Old Fashjon",
-      "description": "hard drink",
-      "recipe": "whiskey, rum, bitters",
+      "name": "Test Drink",
+      "description": "testing adding a drink",
+      "recipe": "drink",
       "serve": "on ice",
-      "id": "old-fashjon"
+      "id": "test-drink"
     }
   ],
   "snacks": [
@@ -59,18 +59,11 @@
       "serve": "Place on tiny, precious little plates."
     },
     {
-      "name": "Testing One Snack",
-      "description": "This is a new snack",
-      "recipe": "open bag",
-      "serve": "eat",
-      "id": "testing-one-snack"
-    },
-    {
-      "name": "Dorritos Chips",
-      "description": "Chips",
-      "recipe": "corn and salt",
-      "serve": "in a bag",
-      "id": "dorritos-chip"
+      "name": "Test Snack",
+      "description": "testing adding a snack",
+      "recipe": "snack",
+      "serve": "right away",
+      "id": "test-snack"
     }
   ]
 }

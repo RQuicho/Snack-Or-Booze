@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
 import FoodMenu from "./FoodMenu";
 import FoodItem from "./FoodItem";
-import NotFound from "./NotFound";
+import NotFound from "./NotFoundMenu";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [items, setItems] = useState([]);
-  // const {snackordrink} = useParams();
-
+ 
   useEffect(() => {
+    // returns snacks and drinks data
     async function getItems() {
       try {
         let snacks = await SnackOrBoozeApi.getSnacks();
@@ -30,13 +30,10 @@ function App() {
     getItems();
   }, []);
 
+  // if isLoading state is true, render a Loading message
   if (isLoading) {
     return <p>Loading &hellip;</p>;
   }
-
-  // if (snackordrink !== 'snacks' && snackordrink !== 'drinks') {
-  //   return <NotFound />
-  // }
 
   return (
     <div className="App">

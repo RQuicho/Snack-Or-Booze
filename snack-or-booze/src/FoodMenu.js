@@ -11,13 +11,14 @@ import {
 } from "reactstrap";
 import SnackOrBoozeApi from "./Api";
 import NewItemForm from "./NewItemForm";
-import {stringify, v4 as uuid} from 'uuid';
+import NotFoundMenu from "./NotFoundMenu";
 
 function FoodMenu({ items:options }) {
-  const {snackordrink} = useParams();
+  const {snackordrink} = useParams(); // this is the argument in the URL ('/:snackordrink")
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    // returns snacks or drinks data
     const getItems = async() => {
       try {
         if (snackordrink === 'snacks') {
@@ -34,6 +35,7 @@ function FoodMenu({ items:options }) {
     getItems();
   }, [snackordrink]);
 
+  // adds new item to db.json using SnackOrBoozeApi
   const addItem = async(newItemData) => {
     try {
       if (snackordrink === 'snacks') {
@@ -46,6 +48,15 @@ function FoodMenu({ items:options }) {
     } catch(e) {
       console.error("Error fetching new item data in FoodMenu component", e);
     }
+  }
+
+  // render a Not Found component
+  if (snackordrink !== 'snacks' && snackordrink !== 'drinks') {
+    return (
+      <>
+        <NotFoundMenu />
+      </>
+    )
   }
 
   return (

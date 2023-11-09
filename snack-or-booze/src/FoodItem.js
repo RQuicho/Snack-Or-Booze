@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { redirect, useParams, useNavigate, Navigate } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 import SnackOrBoozeApi from "./Api";
+import NotFoundItem from "./NotFoundItem";
 
 function FoodItem({ items:options, cantFind }) {
   const {id} = useParams();
@@ -10,6 +11,7 @@ function FoodItem({ items:options, cantFind }) {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
+    // returns snacks or drinks data
     const getItems = async() => {
       try {
         if (snackordrink === 'snacks') {
@@ -26,6 +28,8 @@ function FoodItem({ items:options, cantFind }) {
     getItems();
   }, [snackordrink]);
   
+  // after snacks or drinks data returned, find item in that data set based on the id
+  // return that item
   useEffect(() => {
     let clickedItem = items.find(item => item.id === id);
     if (clickedItem) {
@@ -34,6 +38,15 @@ function FoodItem({ items:options, cantFind }) {
   }, [items, id])
 
   if (!item) return <Navigate to={cantFind} />;
+
+  // render a Not Found component
+  if (id !== item.id) {
+    return (
+      <>
+        <NotFoundItem snackordrink={snackordrink}/>
+      </>
+    )
+  }
 
   return (
     <section>

@@ -1,15 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const NotFound = () => {
+// render not found page if user tries link that doesn't work
+// button redirects user back to home page
+const NotFoundMenu = () => {
   return (
     <div>
       <h1>The page you're looking for doesn't exist.</h1>
       <button>
-        <Link to='/'>Home</Link>
+        <Link to='/'>Back</Link>
       </button>
     </div>
   );
 }
 
-export default NotFound;
+export default NotFoundMenu;
